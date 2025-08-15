@@ -50,7 +50,7 @@ const redisConnection = new Redis({
 const montageQueue = new Queue(process.env.NAME_KV_VIDEO_MONTAGE_MAKER_QUEUE, {
   connection: redisConnection,
 });
-const youtubeUploadQueue = new Queue("KyberVision17YouTubeUploader", {
+const youtubeUploadQueue = new Queue("KyberVision18YouTubeUploader", {
   connection: redisConnection,
 });
 

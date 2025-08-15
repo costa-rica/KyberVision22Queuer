@@ -1,5 +1,5 @@
 {
-  "name": "kybervision17queuer",
+  "name": "kybervision18queuer",
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
@@ -21,7 +21,7 @@
     "ejs": "^3.1.10",
     "express": "^5.1.0",
     "ioredis": "^5.6.0",
-    "kybervision17db": "file:../KyberVision17Db",
+    "kybervision18db": "file:../KyberVision18Db",
     "morgan": "^1.10.0"
   }
 }
