@@ -23,11 +23,11 @@ app.use(cors());
 // - Disable logging for Bull Board dashboard requests
 // app.use(logger("dev"));
 app.use((req, res, next) => {
-	// Disable logging for Bull Board dashboard requests
-	if (req.path.startsWith("/dashboard")) {
-		return next();
-	}
-	return logger("dev")(req, res, next);
+  // Disable logging for Bull Board dashboard requests
+  if (req.path.startsWith("/dashboard")) {
+    return next();
+  }
+  return logger("dev")(req, res, next);
 });
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -40,18 +40,18 @@ app.use(express.urlencoded({ limit: "6gb", extended: true }));
 
 // Redis Connection
 const redisConnection = new Redis({
-	host: process.env.REDIS_HOST || "127.0.0.1",
-	port: process.env.REDIS_PORT || 6379,
-	maxRetriesPerRequest: null,
-	enableReadyCheck: false,
+  host: process.env.REDIS_HOST || "127.0.0.1",
+  port: process.env.REDIS_PORT || 6379,
+  maxRetriesPerRequest: null,
+  enableReadyCheck: false,
 });
 
 // Define Queues
 const montageQueue = new Queue(process.env.NAME_KV_VIDEO_MONTAGE_MAKER_QUEUE, {
-	connection: redisConnection,
+  connection: redisConnection,
 });
-const youtubeUploadQueue = new Queue("KyberVision20YouTubeUploader", {
-	connection: redisConnection,
+const youtubeUploadQueue = new Queue("KyberVision22YouTubeUploader", {
+  connection: redisConnection,
 });
 
 // Bull Board setup
@@ -59,11 +59,11 @@ const serverAdapter = new ExpressAdapter();
 serverAdapter.setBasePath("/dashboard"); // Make the dashboard accessible at the "/dashboard" URL
 
 createBullBoard({
-	queues: [
-		new BullMQAdapter(montageQueue),
-		new BullMQAdapter(youtubeUploadQueue),
-	],
-	serverAdapter,
+  queues: [
+    new BullMQAdapter(montageQueue),
+    new BullMQAdapter(youtubeUploadQueue),
+  ],
+  serverAdapter,
 });
 
 // 🟢 Place this above all other routes

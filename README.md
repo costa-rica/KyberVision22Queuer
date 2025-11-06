@@ -1,14 +1,14 @@
 # Kyber Vision Job Queuer
 
-- v 0.18.0
+- v 0.22.0
 
 ## Description
 
-KyberVision20Queuer is an ExpressJS application designed to manage and monitor jobs using BullMQ and Bull Board. It serves as a centralized job queue manager for various microservices in the Kyber Vision ecosystem.
+KyberVision22Queuer is an ExpressJS application designed to manage and monitor jobs using BullMQ and Bull Board. It serves as a centralized job queue manager for various microservices in the Kyber Vision ecosystem.
 
 The application is designed to:
 
-- Trigger jobs for connected microservices (e.g., KyberVision20YouTubeUploader).
+- Trigger jobs for connected microservices (e.g., KyberVision22YouTubeUploader).
 - Monitor job progress and logs through a Bull Board dashboard available at `/dashboard`.
 - Ensure sequential processing of jobs to maintain order and efficiency.
 
@@ -85,20 +85,20 @@ sudo systemctl start redis
 REDIS_HOST=127.0.0.1
 REDIS_PORT=6379
 PORT=8003
-APP_NAME=KyberVision20Queuer
+APP_NAME=KyberVision22Queuer
 PATH_TO_TEST_JOB_SERVICE=/Users/nick/Documents/KyberVisionTestJob03/
 ```
 
 #### 3.1 to run YouTube Uploader
 
 ```bash
-PATH_TO_YOUTUBE_UPLOADER_SERVICE=/Users/nick/Documents/KyberVision20YouTubeUploader/
-PATH_VIDEOS_UPLOAD03=/Users/nick/Documents/_project_resources/KyberVision20API/session_videos/upload03
+PATH_TO_YOUTUBE_UPLOADER_SERVICE=/Users/nick/Documents/KyberVision22YouTubeUploader/
+PATH_VIDEOS_UPLOAD03=/Users/nick/Documents/_project_resources/KyberVision22API/session_videos/upload03
 YOUTUBE_CLIENT_ID=someId-id.apps.googleusercontent.com
 YOUTUBE_CLIENT_SECRET=secret
 YOUTUBE_REDIRECT_URI=http://localhost
 YOUTUBE_REFRESH_TOKEN=refresh_token
-YOUTUBE_UPLOADER_QUEUE_NAME=KyberVision20YouTubeUploader
+YOUTUBE_UPLOADER_QUEUE_NAME=KyberVision22YouTubeUploader
 ```
 
 #### 3.2 connection to db
@@ -106,7 +106,7 @@ YOUTUBE_UPLOADER_QUEUE_NAME=KyberVision20YouTubeUploader
 ```bash
 NAME_DB=kv15.db
 NAME_KV_VIDEO_PROCESSOR=videoProcessor.js
-PATH_DATABASE=/Users/nick/Documents/_databases/KyberVision20API/
+PATH_DATABASE=/Users/nick/Documents/_databases/KyberVision22API/
 ```
 
 ---
@@ -207,7 +207,7 @@ These commands will help you manage the Redis server on both Mac and Ubuntu syst
 redis-server
 ```
 
-2. **Start KyberVision20Queuer Server**:
+2. **Start KyberVision22Queuer Server**:
 
 ```bash
 yarn start
@@ -253,8 +253,8 @@ curl -X POST http://localhost:8003/video-uploader/process \
 
 ```js
 const child = spawn("node", ["index.js"], {
-	cwd: path.join(process.env.PATH_TO_TEST_JOB_SERVICE),
-	stdio: ["pipe", "pipe", "pipe"], // Make sure to capture stdout and stderr
+  cwd: path.join(process.env.PATH_TO_TEST_JOB_SERVICE),
+  stdio: ["pipe", "pipe", "pipe"], // Make sure to capture stdout and stderr
 });
 ```
 
